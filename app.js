@@ -8,6 +8,7 @@ require('dotenv').config();
 const portfolioRoutes = require('./routes/portfolio');
 const comparisonRoutes = require('./routes/comparison');
 const predictionsRoutes = require('./routes/predictions');
+const stockRoutes = require('./routes/stocks');
 const authRoutes = require('./routes/auth');
 
 // Import middleware
@@ -20,7 +21,7 @@ const securityHeaders = require('./middleware/securityHeaders');
 require('./auth/passport');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
@@ -45,6 +46,7 @@ app.use(authenticateUser)
 app.use('/api/portfolio', portfolioRoutes);
 app.use('/api/comparison', comparisonRoutes);
 app.use('/api/predictions', predictionsRoutes);
+app.use('/api/stocks', stockRoutes);
 
 // Error handling
 app.use(errorHandler);

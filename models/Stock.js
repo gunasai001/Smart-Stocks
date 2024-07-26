@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const stockSchema = new mongoose.Schema({
+  _id: { type: String, required: true },
   symbol: { type: String, required: true, unique: true },
   company_name: { type: String, required: true },
   sector: String,
@@ -16,7 +17,7 @@ const stockSchema = new mongoose.Schema({
   historical_prices: [{
     date: Date,
     open: Number,
-    high: Number,
+    high: Number, 
     low: Number,
     close: Number
   }],

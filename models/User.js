@@ -5,8 +5,8 @@ const userSchema = new mongoose.Schema({
   username: { type: String, required: true },
   password: { type: String, required: true },
   email: { type: String, required: true, unique: true },
-  fullName: { type: String, required: true },
-  mobileNumber: { type: String, required: true },
+  fullname: { type: String, required: true },
+  mobileno: { type: String, required: true },
   selected_stocks: [{
     stock: { type: mongoose.Schema.Types.ObjectId, ref: 'Stock' },
     price: { type: Number, required: true },

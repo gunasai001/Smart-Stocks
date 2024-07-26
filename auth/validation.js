@@ -1,9 +1,10 @@
 const validator = require('validator');
 
 exports.validateRegistrationData = (req, res, next) => {
-  const { username, email, password, fullName, mobileNumber } = req.body;
+  const { username, email, password, fullname, mobileno } = req.body;
+  console.log(username)
   // Check if any required fields are missing
-  if (!username || !email || !password || !fullName || !mobileNumber) {
+  if (!username || !email || !password || !fullname || !mobileno) {
     return res.status(400).json({ error: 'All fields are required' });
   }
 
