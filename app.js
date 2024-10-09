@@ -10,6 +10,7 @@ const comparisonRoutes = require('./routes/comparison');
 const predictionsRoutes = require('./routes/predictions');
 const stockRoutes = require('./routes/stocks');
 const authRoutes = require('./routes/auth');
+const adminRoutes = require('./routes/adminRoutes');
 
 // Import middleware
 const errorHandler = require('./middleware/errorHandler');
@@ -41,6 +42,7 @@ connectDB();
 // Rest of your application code...
 
 // Routes
+app.use('/api/admin', adminRoutes);
 app.use('/api/auth', authRoutes);
 app.use(authenticateUser)
 app.use('/api/portfolio', portfolioRoutes);

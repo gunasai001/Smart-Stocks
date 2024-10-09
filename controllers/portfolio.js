@@ -22,10 +22,7 @@ exports.getUser = async (req, res) => {
     const userId = req.userid; // Assuming you have authenticated the user and the userId is available in req.user
     const user = await User.findById(userId)
 
-    res.status(200).json({
-      success: true,
-      user: user
-    });
+    res.status(200).json(user);
   } catch (err) {
     res.status(500).json({
       success: false,
@@ -64,6 +61,46 @@ exports.addStockToPortfolio = async (req, res) => {
       success: true,
       message: 'Stock added to portfolio',
       portfolio: user.selected_stocks
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({
+      success: false,
+      error: 'Serversdfsdf Error'
+    });
+  }
+};
+
+
+exports.addStocktoWishlist = async (req, res) => {
+  try {
+    const userId = req.userid;
+    const { _id } = req.body;
+    
+    // Find the user and check if the stock is already in the portfolio
+    const user = await User.findById(userId);
+    
+    
+    
+    const stockExists = user.wishlisted_stocks.some(stock => {
+      return stock._id.toString() === _id
+    });
+    
+    if (stockExists) {
+      return res.status(400).json({
+        success: false,
+        message: 'Stock already exists in wishlist'
+      });
+    }
+
+    // If the stock doesn't exist, add it to the portfolio
+    user.wishlisted_stocks.push({ _id });
+    await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: 'Stock added to wishlist',
+      wishlisted_stocks: user.wishlisted_stocks
     });
   } catch (err) {
     console.log(err);

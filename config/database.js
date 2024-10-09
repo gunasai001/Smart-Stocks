@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/backend';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27018/backend';
 
 const connectDB = async () => {
   try {

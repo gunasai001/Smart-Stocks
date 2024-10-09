@@ -4,11 +4,12 @@ const stockSchema = new mongoose.Schema({
   _id: { type: String, required: true },
   symbol: { type: String, required: true, unique: true },
   company_name: { type: String, required: true },
+  price: Number,
   sector: String,
   industry: String,
   market_cap: Number,
   dividend_yield: Number,
-  pe_ratio: Number,
+  price_to_earnings_ratio: Number,
   eps: Number,
   beta: Number,
   volume: Number,
@@ -21,10 +22,7 @@ const stockSchema = new mongoose.Schema({
     low: Number,
     close: Number
   }],
-  predictions: [{
-    date: Date,
-    prediction: String // 'up' or 'down'
-  }]
+  predictions: [Number]
 });
 
 const Stock = mongoose.model('Stock', stockSchema);
